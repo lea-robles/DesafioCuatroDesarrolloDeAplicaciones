@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import CategoriesScreen from './src/screens/CategoriesScreen'
+import { useFonts } from 'expo-font'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+
+  const [fontLoaded] = useFonts({
+    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
+  })
+  
+  if(!fontLoaded) return (
+    <View style={styles.containerSpinner}>
+      <ActivityIndicator style={styles.loadedSpinner}/>
+      <Text>Cargando...</Text>
     </View>
+  )
+
+  return (
+    <CategoriesScreen/>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerSpinner: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center'
   },
-});
+  loadedSpinner: {
+    paddingBottom: 15
+  }
+})
