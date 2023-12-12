@@ -1,26 +1,48 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import CategoriesScreen from './src/screens/CategoriesScreen'
+import { StatusBar, ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import { useFonts } from 'expo-font'
+import CategoriesScreen from './src/screens/CategoriesScreen'
+import { useState } from 'react'
+import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
 
 export default function App() {
 
+  const [categorySelected, setCategorySelected] = useState('')
+
+  console.log(" Categoria seleccionada: ", categorySelected)
+
   const [fontLoaded] = useFonts({
     'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
-    'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf')
+    'Roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
+    'Roboto-italic': require('./assets/fonts/Roboto-Italic.ttf'),
+    'Roboto-light': require('./assets/fonts/Roboto-Light.ttf')
   })
-  
-  if(!fontLoaded) return (
+
+  if (!fontLoaded) return (
     <View style={styles.containerSpinner}>
-      <ActivityIndicator style={styles.loadedSpinner}/>
+      <ActivityIndicator style={styles.loadedSpinner} />
       <Text>Cargando...</Text>
     </View>
   )
 
+  const onSelectCategory = (category) => {
+    setCategorySelected(category)
+  }
+
+  const onReturnHome = () =>{
+    setCategorySelected("")
+  }
+
   return (
-    <CategoriesScreen/>
-  );
+    <>{
+      categorySelected
+        ?
+        <ProductsByCategoryScreen category={categorySelected} returnHandlerEvent={onReturnHome}/>
+        :
+        <CategoriesScreen onSelectCategoryEvent={onSelectCategory} />
+    }
+      <StatusBar style="auto" />
+    </>
+  )
 }
 
 const styles = StyleSheet.create({

@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import {colors} from '../global/colors'
+import { AntDesign } from '@expo/vector-icons'
 
-const Header = ({ title }) => {
+const Header = ({ title , returnHandlerEvent}) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>
+      <AntDesign onPress={() => returnHandlerEvent()} name="home" size={24} color="black" />
     </View>
   )
 }
@@ -19,6 +21,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary
   },
   headerTitle: {
-    color: colors.secondary
+    color: colors.secondary,
+    fontFamily: "Roboto-bold",
+    fontSize: 25
   }
 })
