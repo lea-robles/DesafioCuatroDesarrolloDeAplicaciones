@@ -2,9 +2,13 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import { useState } from 'react'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
-const Search = ({onSearchHandlerEvent}) => {
+const Search = ({onSearchHandlerEvent, searchDeleteEvent}) => {
 
     const [searchInput, setSearchInput] = useState('')
+    
+    const deleteInput = () => {
+        setSearchInput('')
+    }
 
     return (
         <View style={styles.container}>
@@ -17,7 +21,7 @@ const Search = ({onSearchHandlerEvent}) => {
             <TouchableOpacity onPress={() => onSearchHandlerEvent(searchInput)}>
                 <Ionicons name="search" size={24} color="#646464" />
             </TouchableOpacity>
-            <TouchableOpacity onPress={null}>
+            <TouchableOpacity onPress={() => searchDeleteEvent()} onPressOut={() => deleteInput()}>
                 <Entypo name="cross" size={24} color="#646464" />
             </TouchableOpacity>
         </View>

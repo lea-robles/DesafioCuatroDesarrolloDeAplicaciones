@@ -27,10 +27,14 @@ const ProductsByCategoryScreen = ({category, returnHandlerEvent}) => {
     setSearch(search)
   }
 
+  deleteSearch = () => {
+    setSearch('')
+  }
+
   return (
     <>
       <Header title='Productos' returnHandlerEvent={() => returnHandlerEvent()}/>
-      <Search onSearchHandlerEvent={onSearch}/>
+      <Search onSearchHandlerEvent={onSearch} searchDeleteEvent={deleteSearch}/>
       <FlatList
         data={productsByCategory}
         renderItem={renderProductItem}
