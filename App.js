@@ -8,8 +8,6 @@ export default function App() {
 
   const [categorySelected, setCategorySelected] = useState('')
 
-  console.log(" Categoria seleccionada: ", categorySelected)
-
   const [fontLoaded] = useFonts({
     'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
     'Roboto-bold': require('./assets/fonts/Roboto-Bold.ttf'),
@@ -29,7 +27,7 @@ export default function App() {
   }
 
   const onReturnHome = () =>{
-    setCategorySelected("")
+    setCategorySelected('')
   }
 
   return (
@@ -38,7 +36,7 @@ export default function App() {
         ?
         <ProductsByCategoryScreen category={categorySelected} returnHandlerEvent={onReturnHome}/>
         :
-        <CategoriesScreen onSelectCategoryEvent={onSelectCategory} />
+        <CategoriesScreen onSelectCategoryEvent={onSelectCategory} returnHandlerEvent={onReturnHome} />
     }
       <StatusBar style="auto" />
     </>

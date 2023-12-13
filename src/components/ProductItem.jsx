@@ -7,7 +7,6 @@ const ProductItem = ({ product }) => {
     const [isPressed, setIsPressed] = useState(false)
 
     const onPressButton = () => {
-        console.log('Botón presionado')
         setIsPressed(!isPressed)
     }
 

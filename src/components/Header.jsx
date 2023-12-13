@@ -6,7 +6,7 @@ const Header = ({ title , returnHandlerEvent}) => {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>
-      <AntDesign onPress={() => returnHandlerEvent()} name="home" size={24} color="black" />
+      <AntDesign onPress={() => returnHandlerEvent()} name="home" size={30} color={colors.secondary} />
     </View>
   )
 }
@@ -16,9 +16,11 @@ export default Header
 const styles = StyleSheet.create({
   headerContainer: {
     height: 100,
-    justifyContent: 'center',
+    flexDirection:'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.primary
+    backgroundColor: colors.primary,
+    paddingHorizontal: 20
   },
   headerTitle: {
     color: colors.secondary,
