@@ -3,10 +3,12 @@ import { useFonts } from 'expo-font'
 import CategoriesScreen from './src/screens/CategoriesScreen'
 import { useState } from 'react'
 import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
+import ProductDetailScreen from './src/screens/ProductDetailScreen'
 
 export default function App() {
 
   const [categorySelected, setCategorySelected] = useState('')
+  const [productSelected, setProductSelected] = useState(null)
 
   const [fontLoaded] = useFonts({
     'Roboto-regular': require('./assets/fonts/Roboto-Regular.ttf'),
@@ -28,13 +30,22 @@ export default function App() {
 
   const onReturnHome = () =>{
     setCategorySelected('')
+    setProductSelected(null)
+  }
+
+  const onProducSelect = (id) => {
+    setProductSelected(id)
   }
 
   return (
     <>{
+      productSelected
+      ?
+      <ProductDetailScreen productId={productSelected} returnHandlerEvent={onReturnHome}/>
+      :
       categorySelected
         ?
-        <ProductsByCategoryScreen category={categorySelected} returnHandlerEvent={onReturnHome}/>
+        <ProductsByCategoryScreen category={categorySelected} returnHandlerEvent={onReturnHome} onProducSelectEvent={onProducSelect}/>
         :
         <CategoriesScreen onSelectCategoryEvent={onSelectCategory} returnHandlerEvent={onReturnHome} />
     }

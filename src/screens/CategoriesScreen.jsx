@@ -1,7 +1,6 @@
-import { FlatList, StyleSheet } from 'react-native'
-import Header from '../components/Header'
+import { FlatList } from 'react-native'
+import { CategoryItem, Header } from '../components'
 import categories_data from '../data/categories_data.json'
-import CategoryItem from '../components/CategoryItem'
 
 const CategoriesScreen = ({ onSelectCategoryEvent, returnHandlerEvent }) => {
 
@@ -22,7 +21,3 @@ const CategoriesScreen = ({ onSelectCategoryEvent, returnHandlerEvent }) => {
 }
 
 export default CategoriesScreen
-
-const styles = StyleSheet.create({
-
-})
