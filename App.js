@@ -1,9 +1,7 @@
-import { StatusBar, ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View, StatusBar} from 'react-native'
 import { useFonts } from 'expo-font'
-import CategoriesScreen from './src/screens/CategoriesScreen'
 import { useState } from 'react'
-import ProductsByCategoryScreen from './src/screens/ProductsByCategoryScreen'
-import ProductDetailScreen from './src/screens/ProductDetailScreen'
+import Navigator from './src/navigation/Navigator'
 
 export default function App() {
 
@@ -28,28 +26,14 @@ export default function App() {
     setCategorySelected(category)
   }
 
-  const onReturnHome = () =>{
-    setCategorySelected('')
-    setProductSelected(null)
-  }
-
   const onProducSelect = (id) => {
     setProductSelected(id)
   }
 
   return (
-    <>{
-      productSelected
-      ?
-      <ProductDetailScreen productId={productSelected} returnHandlerEvent={onReturnHome}/>
-      :
-      categorySelected
-        ?
-        <ProductsByCategoryScreen category={categorySelected} returnHandlerEvent={onReturnHome} onProducSelectEvent={onProducSelect}/>
-        :
-        <CategoriesScreen onSelectCategoryEvent={onSelectCategory} returnHandlerEvent={onReturnHome} />
-    }
-      <StatusBar style="auto" />
+    <>
+    <StatusBar/>
+    <Navigator/>
     </>
   )
 }

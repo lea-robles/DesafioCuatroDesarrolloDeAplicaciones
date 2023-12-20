@@ -1,16 +1,15 @@
 import { FlatList } from 'react-native'
-import { CategoryItem, Header } from '../components'
+import { CategoryItem } from '../components'
 import categories_data from '../data/categories_data.json'
 
-const CategoriesScreen = ({ onSelectCategoryEvent, returnHandlerEvent }) => {
+const CategoriesScreen = ({ navigation }) => {
 
   const renderCategoryItem = ({ item }) => (
-    <CategoryItem category={item} onSelectCategoryEvent={onSelectCategoryEvent} />
+    <CategoryItem category={item} navigation={navigation} />
   )
 
   return (
     <>
-      <Header title='Categorías' returnHandlerEvent={() => returnHandlerEvent()} />
       <FlatList
         data={categories_data}
         renderItem={renderCategoryItem}
